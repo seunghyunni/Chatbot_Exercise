@@ -41,9 +41,9 @@ Entire implementation of the BLIP model is borrowed from the official pytorch im
 Using BLIP as a feature extractor for both image and text, the ChatBot which does text-to-image retrieval task is implemented. 
 
 * Note that running BLIP for extracting image features require 3500MiB GPU memory. Also, it takes approximately 2 seconds for extracting features from each image. 
-
 Considering the expensive time for feature extraction process, I prepared a preprocessed data in advance, which is composed of feature vectors extracted from the whole 'train' set (2,340 images). 
 The preprocessed data is in the folder, under the name of **'newyorker_caption_contest.pt'**. 
+
 However, user can always decide whether to use this preprocessed data or not. If user choose not to, then the feature extracting process will begin promptly during running the program.
 
 
