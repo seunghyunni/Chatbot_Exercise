@@ -60,3 +60,7 @@ python chatbot.py
 2. The user will be asked to input a message. Receiving a message, the program will promptly find a best matching image from the dataset and show the image. At the same time, the found image will be saved at the './chatbot_results' forder, under the name of user input. 
 
 3. After returning the image, the program will ask the user to continue or not. If answered 'yes', the user is asked again for the new message. If answered 'no', the program will end. 
+
+The running screen would look like this: 
+
+![alt text](https://github.com/seunghyunni/Chatbot_Exercise/blob/origin/preview_images/running.png?raw=true)
