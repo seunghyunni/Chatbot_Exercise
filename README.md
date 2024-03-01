@@ -12,7 +12,7 @@ All codes are implemented in Python and tested using single NVIDIA RTX A5000 mac
 This repository is built upon the official Pytorch implementation of the BLIP [https://github.com/salesforce/BLIP/tree/main]. After forking the BLIP repository, the python script **'chatbot.py'** for ChatBot program has been implemented. 
 The code has been tested on PyTorch 1.10.
 
-Once again, note that only **'chatbot.py'** script in the folder is newly implemented. 
+* Once again, note that only **'chatbot.py'** script in the folder is newly implemented. 
 
 To run the model, please refer to the Requirements.
 
