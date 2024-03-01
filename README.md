@@ -1,116 +1,61 @@
-## BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation
 
-## Announcement: BLIP is now officially integrated into [LAVIS](https://github.com/salesforce/LAVIS) - a one-stop library for language-and-vision research and applications!
+# Repository for ChatBot Design Application exercise.
 
-<img src="BLIP.gif" width="700">
+This repository holds the implementation for a chatbot that allows user to enter a message and returns the best matching image from the given image dataset:
 
-This is the PyTorch code of the <a href="https://arxiv.org/abs/2201.12086">BLIP paper</a> [[blog](https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/)]. The code has been tested on PyTorch 1.10.
-To install the dependencies, run <pre/>pip install -r requirements.txt</pre> 
+Dataset:
+<a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fhuggingface.co%2Fdatasets%2Fjmhessel%2Fnewyorker_caption_contest&data=05%7C02%7Chwang229%40purdue.edu%7C788d3a9b767849d5c47308dc37cf8cd2%7C4130bd397c53419cb1e58758d6d63f21%7C0%7C0%7C638446611803407060%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=u6MBJr2tHVBccx5%2FURhBOCTZ%2BVffBcIFCA9yif6WW9w%3D&reserved=0">jmhessel/newyorker_caption_contest · Datasets at Hugging Face</a>
 
-Catalog:
-- [x] Inference demo
-- [x] Pre-trained and finetuned checkpoints
-- [x] Finetuning code for Image-Text Retrieval, Image Captioning, VQA, and NLVR2
-- [x] Pre-training code
-- [x] Zero-shot video-text retrieval
-- [x] Download of bootstrapped pre-training datasets 
+All codes are implemented in Python and tested using single NVIDIA RTX A5000 machine.
 
+* Note that for text-to-image retrieval task, a pretrained Vision-Language model is adopted. Here, we use <a href="https://arxiv.org/abs/2201.12086">BLIP </a> [[blog](https://blog.salesforceairesearch.com/blip-bootstrapping-language-image-pretraining/)].
+The official Pytorch implementation of the BLIP is used for implementing a ChatBot.
+The code has been tested on PyTorch 1.10.
 
-### Inference demo:
-Run our interactive demo using [Colab notebook](https://colab.research.google.com/github/salesforce/BLIP/blob/main/demo.ipynb) (no GPU needed).
-The demo includes code for: 
-1. Image captioning
-2. Open-ended visual question answering
-3. Multimodal / unimodal feature extraction
-4. Image-text matching
+To import the BLIP model, the whole github repository[https://github.com/salesforce/BLIP/tree/main] of BLIP is cloned in this project. 
+Note that only **'chatbot.py'** script in the folder is newly implemented. 
 
-Try out the [Web demo](https://huggingface.co/spaces/Salesforce/BLIP), integrated into [Huggingface Spaces 🤗](https://huggingface.co/spaces) using [Gradio](https://github.com/gradio-app/gradio). 
+To run the model, please refer to the Requirements.
 
-Replicate web demo and Docker image is also available at [![Replicate](https://replicate.com/salesforce/blip/badge)](https://replicate.com/salesforce/blip)
+## Requirements
 
-### Pre-trained checkpoints:
-Num. pre-train images | BLIP w/ ViT-B | BLIP w/ ViT-B and CapFilt-L | BLIP w/ ViT-L 
---- | :---: | :---: | :---: 
-14M | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_14M.pth">Download</a>| - | -
-129M | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth">Download</a>| <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_capfilt_large.pth">Download</a> | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_large.pth">Download</a>
+To install dependencies for running the application, please execute a following line.
 
-### Finetuned checkpoints:
-Task | BLIP w/ ViT-B | BLIP w/ ViT-B and CapFilt-L | BLIP w/ ViT-L 
---- | :---: | :---: | :---:
-Image-Text Retrieval (COCO) | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth">Download</a>| - | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_large_retrieval_coco.pth">Download</a>
-Image-Text Retrieval (Flickr30k) | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_flickr.pth">Download</a>|  - | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_large_retrieval_flickr.pth">Download</a>
-Image Captioning (COCO) | - | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth">Download</a>| <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_large_caption.pth">Download</a> | 
-VQA | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_vqa.pth">Download</a>| <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_vqa_capfilt_large.pth">Download</a> | - 
-NLVR2 | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_nlvr.pth">Download</a>| - | - 
+```setup
+pip install -r requirements.txt
+```
+
+## Dataset
+
+Direct link to the 'newyorker_caption_contest' dataset is <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fhuggingface.co%2Fdatasets%2Fjmhessel%2Fnewyorker_caption_contest&data=05%7C02%7Chwang229%40purdue.edu%7C788d3a9b767849d5c47308dc37cf8cd2%7C4130bd397c53419cb1e58758d6d63f21%7C0%7C0%7C638446611803407060%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=u6MBJr2tHVBccx5%2FURhBOCTZ%2BVffBcIFCA9yif6WW9w%3D&reserved=0">here. </a>
+The dataset is composed of 'train', 'test', and 'validation' sets. Each set contains 2,340, 131, and 130 images, respectively. 
+**Here, we note that only 'train' set is used for parsing image.**
+
+## Model
+
+We used pretrained version of BLIP with ViT-B backbone, finetuned on the COCO dataset. The checkpoint can be found <a href="https://github.com/salesforce/BLIP/tree/main">here. </a>
 
 
-### Image-Text Retrieval:
-1. Download COCO and Flickr30k datasets from the original websites, and set 'image_root' in configs/retrieval_{dataset}.yaml accordingly.
-2. To evaluate the finetuned BLIP model on COCO, run:
-<pre>python -m torch.distributed.run --nproc_per_node=8 train_retrieval.py \
---config ./configs/retrieval_coco.yaml \
---output_dir output/retrieval_coco \
---evaluate</pre> 
-3. To finetune the pre-trained checkpoint using 8 A100 GPUs, first set 'pretrained' in configs/retrieval_coco.yaml as "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth". Then run:
-<pre>python -m torch.distributed.run --nproc_per_node=8 train_retrieval.py \
---config ./configs/retrieval_coco.yaml \
---output_dir output/retrieval_coco </pre> 
+## Code references and guidelines to new codes
 
-### Image-Text Captioning:
-1. Download COCO and NoCaps datasets from the original websites, and set 'image_root' in configs/caption_coco.yaml and configs/nocaps.yaml accordingly.
-2. To evaluate the finetuned BLIP model on COCO, run:
-<pre>python -m torch.distributed.run --nproc_per_node=8 train_caption.py --evaluate</pre> 
-3. To evaluate the finetuned BLIP model on NoCaps, generate results with: (evaluation needs to be performed on official server)
-<pre>python -m torch.distributed.run --nproc_per_node=8 eval_nocaps.py </pre> 
-4. To finetune the pre-trained checkpoint using 8 A100 GPUs, first set 'pretrained' in configs/caption_coco.yaml as "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_capfilt_large.pth". Then run:
-<pre>python -m torch.distributed.run --nproc_per_node=8 train_caption.py </pre> 
+Entire implementation of the BLIP model is borrowed from the official pytorch implementation of BLIP.
+Using BLIP as a feature extractor for both image and text, the ChatBot which does text-to-image retrieval task is implemented. 
 
-### VQA:
-1. Download VQA v2 dataset and Visual Genome dataset from the original websites, and set 'vqa_root' and 'vg_root' in configs/vqa.yaml.
-2. To evaluate the finetuned BLIP model, generate results with: (evaluation needs to be performed on official server)
-<pre>python -m torch.distributed.run --nproc_per_node=8 train_vqa.py --evaluate</pre> 
-3. To finetune the pre-trained checkpoint using 16 A100 GPUs, first set 'pretrained' in configs/vqa.yaml as "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_capfilt_large.pth". Then run:
-<pre>python -m torch.distributed.run --nproc_per_node=16 train_vqa.py </pre> 
+Note that running BLIP for extracting image features require 3500MiB GPU memory. Also, it takes approximately 2 seconds for extracting features from each image. 
+Considering the expensive time for feature extraction process, I prepared a preprocessed data in advance, which is composed of feature vectors extracted from the whole 'train' set (2,340 images). The preprocessed data is in the 'BLIP' folder, under the name of **'newyorker_caption_contest.pt'**. 
+However, user can always choose whether to use this preprocessed data or not. If user choose not to, then the feature extracting process will begin promptly during running the program.
 
-### NLVR2:
-1. Download NLVR2 dataset from the original websites, and set 'image_root' in configs/nlvr.yaml.
-2. To evaluate the finetuned BLIP model, run
-<pre>python -m torch.distributed.run --nproc_per_node=8 train_nlvr.py --evaluate</pre> 
-3. To finetune the pre-trained checkpoint using 16 A100 GPUs, first set 'pretrained' in configs/nlvr.yaml as "https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base.pth". Then run:
-<pre>python -m torch.distributed.run --nproc_per_node=16 train_nlvr.py </pre> 
 
-### Finetune with ViT-L:
-In order to finetune a model with ViT-L, simply change the config file to set 'vit' as large. Batch size and learning rate may also need to be adjusted accordingly (please see the paper's appendix for hyper-parameter details). <a href="https://github.com/facebookresearch/fairscale">Gradient checkpoint</a> can also be activated in the config file to reduce GPU memory usage. 
+## Testing
 
-### Pre-train:
-1. Prepare training json files where each json file contains a list. Each item in the list is a dictonary with two key-value pairs: {'image': path_of_image, 'caption': text_of_image}. 
-2. In configs/pretrain.yaml, set 'train_file' as the paths for the json files .
-3. Pre-train the model using 8 A100 GPUs:
-<pre>python -m torch.distributed.run --nproc_per_node=8 pretrain.py --config ./configs/Pretrain.yaml --output_dir output/Pretrain </pre> 
+To run the application, please run:
 
-### Zero-shot video-text retrieval:
-1. Download MSRVTT dataset following the instructions from https://github.com/salesforce/ALPRO, and set 'video_root' accordingly in configs/retrieval_msrvtt.yaml.
-2. Install [decord](https://github.com/dmlc/decord) with <pre>pip install decord</pre> 
-3. To perform zero-shot evaluation, run
-<pre>python -m torch.distributed.run --nproc_per_node=8 eval_retrieval_video.py</pre> 
+```
+python chatbot.py
+```
 
-### Pre-training datasets download:
-We provide bootstrapped pre-training datasets as json files. Each json file contains a list. Each item in the list is a dictonary with two key-value pairs: {'url': url_of_image, 'caption': text_of_image}. 
+1. Upon running, the program will ask whether to use preprocessed dataset or not. If answered 'yes', the program will begin preprocessing the dataset. If answered 'no', the program will skip the feature extraction part and ask user for input.
 
-Image source | Filtered web caption | Filtered synthetic caption by ViT-B | Filtered synthetic caption by ViT-L
---- | :---: | :---: | :---:
-CC3M+CC12M+SBU |  <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/datasets/ccs_filtered.json">Download</a>|  <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/datasets/ccs_synthetic_filtered.json">Download</a>|  <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/datasets/ccs_synthetic_filtered_large.json">Download</a>
-LAION115M | <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/datasets/laion_filtered.json">Download</a>|  <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/datasets/laion_synthetic_filtered.json">Download</a>|  <a href="https://storage.googleapis.com/sfr-vision-language-research/BLIP/datasets/laion_synthetic_filtered_large.json">Download</a>
+2. The user will be asked to input a message. Receiving a message, the program will promptly find a best matching image from the dataset and show the image. At the same time, the found image will be saved at the './chatbot_results' forder, under the name of user input. 
 
-### Citation
-If you find this code to be useful for your research, please consider citing.
-<pre>
-@inproceedings{li2022blip,
-      title={BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation}, 
-      author={Junnan Li and Dongxu Li and Caiming Xiong and Steven Hoi},
-      year={2022},
-      booktitle={ICML},
-}</pre>
-
-### Acknowledgement
-The implementation of BLIP relies on resources from <a href="https://github.com/salesforce/ALBEF">ALBEF</a>, <a href="https://github.com/huggingface/transformers">Huggingface Transformers</a>, and <a href="https://github.com/rwightman/pytorch-image-models/tree/master/timm">timm</a>. We thank the original authors for their open-sourcing.
+3. After returning the image, the program will ask the user to continue or not. If answered 'yes', the user is asked again for the new input. If answered 'no', the program will end. 
