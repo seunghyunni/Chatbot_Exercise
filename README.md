@@ -64,3 +64,9 @@ python chatbot.py
 The running screen would look like this: 
 
 ![alt text](https://github.com/seunghyunni/Chatbot_Exercise/blob/origin/preview_images/running.png?raw=true)
+
+Some examples of the image retrieval from user prompt (Prompt written at the top of the image):
+
+![alt text](https://github.com/seunghyunni/Chatbot_Exercise/blob/origin/chatbot_results/A%20man%20is%20crawling%20across%20a%20sandbox.png?raw=true)
+![alt text](https://github.com/seunghyunni/Chatbot_Exercise/blob/origin/chatbot_results/Man%20and%20woman%20are%20in%20a%20room%20looking%20at%20a%20big%20book.png?raw=true)
+![alt text](https://github.com/seunghyunni/Chatbot_Exercise/blob/origin/chatbot_results/An%20old%20man%20is%20carrying%20a%20large%20globe.png?raw=true)
